@@ -220,18 +220,13 @@ kramdown:
 
 
 # These settings control the types of collections used by the template
+# output: false -> entries are only listed on /teaching/ and /publications/, no separate (empty) page each
 collections:
   teaching:
-    output: true
+    output: false
     permalink: /:collection/:path/
   publications:
-    output: true
-    permalink: /:collection/:path/
-  portfolio:
-    output: true
-    permalink: /:collection/:path/
-  talks:
-    output: true
+    output: false
     permalink: /:collection/:path/
 
 
