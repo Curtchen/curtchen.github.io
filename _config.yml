@@ -9,7 +9,8 @@
 # Basic Site Settings
 locale                   : "en-US"
 site_theme               : "mint" # The available themes options are "default", "air", "sunrise", "mint", "dirt" and "contrast"
-title                    : "About Me"
+title                    : "Siying Chen" # used in browser tabs, search results and link previews
+nav_home_title           : "About Me"    # text of the home link at the left of the top navigation bar
 title_separator          : "-"
 name                     : &name "Siying Chen"
 description              : &description "Siying Chen's academic portfolio"   # Update this with a general description of your site, this is the default if not overridden by a page
@@ -129,7 +130,7 @@ atom_feed:
 
 
 # SEO Related
-google_site_verification :
+google_site_verification : "tYWKLf3iKwLKeCxGkw-TZaIV7f1vix94jBVmF-A3hZU"
 bing_site_verification   :
 alexa_site_verification  :
 yandex_site_verification :
