@@ -1,0 +1,50 @@
+{% comment %}
+  Renders one publication as a card: thumbnail on the left; title, authors,
+  venue and links on the right. Front matter fields used (all optional except title):
+    thumbnail : image path under /images/ (e.g. "publications/foo.png") or a full URL
+    authors   : "A. Author, Siying Chen*, B. Author" (site.author.name is bolded automatically)
+    venue     : "MICCAI 2026 SafeSurg Workshop"
+    note      : an extra italic line, e.g. "Also at CoRL 2026 Workshop on ..."
+    award     : "Second Best Paper Award"
+    links     : list of {name, url}, shown in order, e.g. Webpage / Paper / Code / Video
+  Older entries with paperurl / slidesurl / bibtexurl are still supported.
+{% endcomment %}
+{% include base_path %}
+{% capture me %}<strong>{{ site.author.name }}</strong>{% endcapture %}
+
+<div class="pub-item">
+  {% if post.thumbnail %}
+    <div class="pub-thumb">
+      <img src="{% if post.thumbnail contains '://' %}{{ post.thumbnail }}{% else %}{{ base_path }}/images/{{ post.thumbnail }}{% endif %}" alt="" loading="lazy">
+    </div>
+  {% endif %}
+  <div class="pub-body">
+    <p class="pub-title">{{ post.title }}</p>
+    {% if post.authors %}
+      <p class="pub-authors">{{ post.authors | replace: site.author.name, me }}</p>
+    {% endif %}
+    {% if post.note %}
+      <p class="pub-venue">{{ post.note }}</p>
+    {% endif %}
+    {% if post.venue %}
+      <p class="pub-venue">{{ post.venue }}</p>
+    {% endif %}
+    {% if post.award %}
+      <p class="pub-award"><i class="fas fa-trophy" aria-hidden="true"></i> {{ post.award }}</p>
+    {% endif %}
+    {% if post.links or post.paperurl or post.slidesurl or post.bibtexurl %}
+    <p class="pub-links">
+      {%- if post.links -%}
+        {%- for link in post.links -%}
+          {%- unless forloop.first %}<span class="pub-sep">·</span>{% endunless -%}
+          <a href="{{ link.url }}" target="_blank" rel="noopener">{{ link.name }}</a>
+        {%- endfor -%}
+      {%- else -%}
+        {%- if post.paperurl %}<a href="{{ post.paperurl }}" target="_blank" rel="noopener">Paper</a>{% endif -%}
+        {%- if post.slidesurl %}{% if post.paperurl %}<span class="pub-sep">·</span>{% endif %}<a href="{{ post.slidesurl }}" target="_blank" rel="noopener">Slides</a>{% endif -%}
+        {%- if post.bibtexurl %}{% if post.paperurl or post.slidesurl %}<span class="pub-sep">·</span>{% endif %}<a href="{{ post.bibtexurl }}" target="_blank" rel="noopener">BibTeX</a>{% endif -%}
+      {%- endif -%}
+    </p>
+    {% endif %}
+  </div>
+</div>

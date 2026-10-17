@@ -1,0 +1,16 @@
+{% comment %}
+  Renders one teaching entry in the same style as the publication list.
+  Front matter fields: title, type (role), venue (school), term, instructor, description
+{% endcomment %}
+<div class="pub-item">
+  <div class="pub-body">
+    <p class="pub-title">{{ post.title }}</p>
+    <p class="pub-authors">{{ post.type }}{% if post.venue %}<span class="pub-sep">·</span>{{ post.venue }}{% endif %}{% if post.term %}<span class="pub-sep">·</span>{{ post.term }}{% endif %}</p>
+    {% if post.instructor %}
+      <p class="pub-authors">Instructor: {{ post.instructor }}</p>
+    {% endif %}
+    {% if post.description %}
+      <p class="pub-venue">{{ post.description }}</p>
+    {% endif %}
+  </div>
+</div>

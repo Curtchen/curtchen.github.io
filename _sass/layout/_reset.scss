@@ -9,10 +9,16 @@ html {
   box-sizing: border-box;
   background-color: var(--global-bg-color);
   font-size: 16px;
+  --page-zoom: 1;
 
   @include breakpoint($medium) {
     font-size: 18px;
+    /* render the desktop site at 90% scale, same as browser zoom at 90%;
+       vh-based heights divide by --page-zoom to still fill the screen */
+    --page-zoom: 0.9;
   }
+
+  zoom: var(--page-zoom);
 
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;

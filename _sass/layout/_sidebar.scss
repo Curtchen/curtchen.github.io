@@ -18,14 +18,14 @@
   }
 
   @media screen and (min-width: $sidebar-screen-min-width) {
-    height: 100vh;
+    height: calc(100vh / var(--page-zoom, 1));
     overflow-y: auto;               // Add scrollbar if the sidebar is too long
     position: fixed;
     padding-top: $masthead-height;
   }
 
   @include breakpoint($large) {
-    @include span(2 of 12);
+    @include span(3 of 12);
     opacity: 1;
     -webkit-transition: opacity 0.2s ease-in-out;
             transition: opacity 0.2s ease-in-out;
@@ -36,7 +36,7 @@
   }
 
   @include breakpoint($x-large) {
-    max-width: $sidebar-link-max-width;
+    max-width: 300px;
     padding-right: 0;
   }
 
@@ -154,8 +154,8 @@
   }
 
   img {
-    max-width: 175px;
-    border-radius: 50%;
+    max-width: 100%;
+    border-radius: 8px;
 
     @include breakpoint($large) {
       padding: 5px;
@@ -189,7 +189,8 @@
 }
 .sidebar .author__name {
   font-family: $sans-serif;
-  font-size: $type-size-5;
+  font-size: $type-size-3;
+  text-align: center;
 }
 
 .sidebar .author__desktop {
@@ -210,6 +211,11 @@
 
 .author__bio {
   margin: 0;
+
+  /* one step smaller than the other sidebar text ($type-size-6) */
+  .sidebar & {
+    font-size: $type-size-7;
+  }
 
   @include breakpoint($large) {
     margin-top: 10px;
@@ -262,7 +268,9 @@
   @include breakpoint($large) {
     display: block;
     position: relative;
-    margin: 0;
+    /* center the list as a block, items stay left-aligned so icons line up */
+    width: fit-content;
+    margin: 0 auto;
     padding: 0;
     border: 0;
     background: transparent;

@@ -442,3 +442,15 @@
     }
   }
 }
+/* 导航菜单右对齐 */
+#site-nav {
+  padding-left: 280px;
+}
+.greedy-nav .visible-links {
+  float: right;
+}
+/* 标题与菜单项样式一致：间距相同，只有选中时才加粗 */
+.greedy-nav .visible-links li.masthead__menu-item--lg {
+  padding-right: 0;
+  font-weight: normal;
+}

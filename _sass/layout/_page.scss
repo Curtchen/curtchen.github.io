@@ -18,9 +18,9 @@
 
 .page {
   @include breakpoint($large) {
-    @include span(10 of 12 last);
+    @include span(9 of 12 last);
     @include prefix(0.5 of 12);
-    @include suffix(2 of 12);
+    @include suffix(0.5 of 12);
   }
 
   .page__inner-wrap {
@@ -57,6 +57,11 @@
 
   p, li, dl {
     font-size: 1em;
+  }
+
+  /* research questions list on the About page, one size smaller than body text */
+  ol.research-questions {
+    font-size: 0.9em;
   }
 
   /* paragraph indents */

@@ -1,0 +1,95 @@
+/* ==========================================================================
+   PUBLICATION LIST (thumbnail + title / authors / venue / links)
+   ========================================================================== */
+
+.pub-list {
+  margin-top: 1.5em;
+}
+
+.pub-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.5em;
+  margin-bottom: 2em;
+  font-size: $type-size-5;
+  line-height: 1.5;
+
+  p {
+    margin: 0 0 0.15em;
+  }
+}
+
+.pub-thumb {
+  /* about a third of the row, but never smaller than 200px or larger than 320px */
+  flex: 0 0 clamp(200px, 35%, 320px);
+
+  /* show the whole figure (no cropping) inside a fixed 2:1 box */
+  img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 2 / 1;
+    object-fit: contain;
+    border-radius: 6px;
+  }
+}
+
+.pub-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.pub-title {
+  color: var(--global-text-color);
+  font-size: 1.05em;
+  font-weight: normal;
+}
+
+/* neutral gray that works in both light and dark mode */
+.pub-authors,
+.pub-venue,
+.pub-sep {
+  color: color-mix(in srgb, var(--global-text-color) 60%, var(--global-bg-color));
+}
+
+.pub-authors strong {
+  color: var(--global-text-color);
+}
+
+.pub-venue {
+  font-style: italic;
+}
+
+.pub-award {
+  color: var(--global-text-color);
+  font-weight: bold;
+
+  i {
+    color: #e0a800;
+  }
+}
+
+.archive .pub-links a {
+  color: var(--global-base-color);
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.pub-sep {
+  margin: 0 0.5em;
+}
+
+/* stack the thumbnail above the text on phones */
+@media (max-width: $small) {
+  .pub-item {
+    flex-direction: column;
+    gap: 0.75em;
+  }
+
+  .pub-thumb {
+    flex-basis: auto;
+    width: 100%;
+  }
+}
