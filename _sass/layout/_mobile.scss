@@ -1,0 +1,160 @@
+/* ==========================================================================
+   NARROW SCREENS (phones / portrait tablets, below $large)
+   - top bar shows only the menu button; every page, including About Me,
+     opens from it as a dropdown
+   - sidebar becomes a stacked profile: big name, full-width photo, bio, links
+   ========================================================================== */
+
+@media (max-width: #{$large - 1px}) {
+
+  /* ---------- top bar ---------- */
+
+  #site-nav {
+    padding-left: 0;
+    min-height: 2.5rem;
+  }
+
+  /* always show the menu button (greedy-nav would otherwise hide it) */
+  .greedy-nav button.hidden {
+    display: block;
+    visibility: visible;
+  }
+
+  /* links are listed in our own dropdown below, not greedy-nav's overflow list */
+  .greedy-nav .hidden-links {
+    display: none;
+  }
+
+  /* collapsed to a zero-size box rather than display:none: jQuery measures
+     display:none elements at their natural width, which would make greedy-nav
+     move items into its own (hidden) overflow list */
+  .greedy-nav .visible-links {
+    display: block;
+    float: none;
+    position: absolute;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    visibility: hidden;
+  }
+
+  /* the button gets .close while open (toggled by greedy-navigation.js) */
+  .greedy-nav button.close ~ .visible-links {
+    width: auto;
+    height: auto;
+    overflow: visible;
+    visibility: visible;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    min-width: 12em;
+    margin-top: 10px;
+    padding: 5px;
+    border: 1px solid var(--global-border-color);
+    border-radius: $border-radius;
+    background: var(--global-bg-color);
+    box-shadow: 0 0 10px rgba(#000, 0.25);
+
+    li {
+      display: block;
+      border-bottom: 1px solid var(--global-border-color);
+
+      &:last-child {
+        border-bottom: none;
+      }
+    }
+
+    a {
+      margin: 0;
+      padding: 10px 20px;
+      font-size: $type-size-5;
+    }
+
+    /* current page is shown in bold only; the underline is for the desktop bar */
+    .selected a,
+    .selected a:hover {
+      border-bottom: none;
+    }
+  }
+
+  /* ---------- sidebar profile ---------- */
+
+  /* greedy-navigation.js writes an inline padding-top (room for the fixed desktop
+     masthead) whenever the Follow button is hidden; not needed here */
+  .sidebar {
+    padding-top: 0 !important;
+  }
+
+  /* the big profile is shown on the home page only; other pages start with their content */
+  .sidebar:not(.sidebar--home) {
+    display: none;
+  }
+
+  .sidebar div[itemscope] {
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* let name and bio take part in the column order around the photo */
+  .author__content {
+    display: contents;
+  }
+
+  .sidebar .author__name {
+    order: 1;
+    margin: 0 0 0.5em;
+    font-size: $type-size-1;
+    font-weight: normal;
+    text-align: left;
+  }
+
+  .author__avatar {
+    order: 2;
+    display: block;
+    width: 100%;
+    max-width: 420px;
+
+    img {
+      display: block;
+      width: 100%;
+    }
+  }
+
+  .author__pronouns,
+  .author__bio {
+    order: 3;
+  }
+
+  .sidebar .author__bio {
+    margin-top: 0.75em;
+    font-size: $type-size-6;
+  }
+
+  /* links as one wrapping row instead of the "Follow" dropdown */
+  .author__urls-wrapper {
+    order: 4;
+    display: block;
+    margin-top: 0.5em;
+
+    button {
+      display: none;
+    }
+  }
+
+  .author__urls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25em 1.25em;
+    position: static;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+
+    &:before,
+    &:after {
+      display: none;
+    }
+  }
+}
