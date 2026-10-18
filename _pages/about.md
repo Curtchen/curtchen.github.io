@@ -1,6 +1,7 @@
 ---
 permalink: /
 title: "About Me"
+seo_title: "Siying Chen" # browser tab / search result title for the home page
 author_profile: true
 redirect_from: 
   - /about/
